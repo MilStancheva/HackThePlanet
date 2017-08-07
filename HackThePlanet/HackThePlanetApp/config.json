@@ -1,0 +1,5 @@
+{
+    "Data": {
+        "ConnectionString": "server=127.0.0.1;user id=hacker;password=hacker123;port=3306;database=hacktheplanet;Allow User Variables=true;"
+    }
+}

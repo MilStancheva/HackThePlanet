@@ -1,0 +1,56 @@
+@model HackThePlanetApp.ViewModels.EquipmentViewModels.EquipmentListViewModel
+
+@{
+    ViewData["Title"] = "Equipment List Page";
+}
+
+<div class="container">
+    <h3>Equipment List</h3>
+    <div class="collection col s12"> 
+       @foreach(var equipment in Model.Equipment)
+       {
+           <div class="collection-item">
+               <h5>@Html.DisplayFor(modelItem => equipment.Name)</h5>
+               <div>
+                    @Html.ActionLink("Export", "Export", "Equipment", new { id = equipment.Id }) 
+               </div>
+               <div class="right-align link">
+                    <a href="#" class="link"><i class="material-icons">add</i></a>
+               </div>               
+               <div class="equipment">
+                   @foreach(var item in equipment.Equipments)
+                   {    
+                        var equipmentNames = equipment.Equipments.Select(x => x.Name).ToList();
+                        <div class="collection-item center-align secondlink">
+                            <a href="#">@Html.DisplayFor(m => item.Name)</a>                                                          
+                            <a href="#" class="secondlink"><i class="material-icons">add</i></a>
+                        </div>
+                        <div class="secondequipment panel right-align">
+                            @string.Join(" ", equipmentNames)                            
+                        </div>
+                   }
+               </div>
+           </div>
+       }
+    </div> 
+</div>
+
+@section Scripts { 
+<script>
+    $(function()   {
+    $(".link").click(function(e) {
+        e.preventDefault();
+        $('div.equipment:visible').hide();
+        $(this).next('div.equipment').show();
+    });
+}); 
+
+$(function()   {
+    $(".secondlink").click(function(e) {
+        e.preventDefault();
+        $('div.secondequipment:visible').hide();
+        $(this).next('div.secondequipment').show();
+    });
+}); 
+</script>
+}
